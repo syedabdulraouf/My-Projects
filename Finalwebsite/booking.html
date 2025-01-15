@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Car</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Book Your Car</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="cars.html">Our Cars</a></li>
+        <li><a href="booking.html">Book Now</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="multimedia.html">Media</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <form id="bookingForm" class="form-container">
+      <fieldset>
+        <legend>Car Rental Form</legend>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <label for="pickup">Pick-Up Location:</label>
+        <input type="text" id="pickup" name="pickup" required><br>
+
+        <label for="date">Rental Date:</label>
+        <input type="date" id="date" name="date" required><br>
+
+        <label for="car">Choose Car:</label>
+        <select name="car" id="car">
+          <option value="sedan">Sedan</option>
+          <option value="suv">SUV</option>
+          <option value="truck">Truck</option>
+        </select><br>
+
+        <label for="message">Special Requests:</label>
+        <textarea id="message" name="message"></textarea><br>
+
+        <button type="button" class="btn" onclick="submitForm()">Book Now</button>
+      </fieldset>
+    </form>
+
+    <section id="confirmation" class="confirmation" style="display:none;">
+      <h2>Booking Confirmation</h2>
+      <p id="confirmationMessage"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Syed's Rentals. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    function submitForm() {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const pickup = document.getElementById("pickup").value;
+      const date = document.getElementById("date").value;
+      const car = document.getElementById("car").value;
+      const message = document.getElementById("message").value;
+
+      const confirmationSection = document.getElementById("confirmation");
+      const confirmationMessage = document.getElementById("confirmationMessage");
+
+      confirmationMessage.innerHTML = `
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Pick-Up Location:</strong> ${pickup}</p>
+        <p><strong>Rental Date:</strong> ${date}</p>
+        <p><strong>Car Type:</strong> ${car}</p>
+        <p><strong>Special Requests:</strong> ${message}</p>
+      `;
+
+      confirmationSection.style.display = "block";
+
+      document.getElementById("bookingForm").reset();
+    }
+  </script>
+</body>
+</html>

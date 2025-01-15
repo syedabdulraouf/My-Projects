@@ -1,0 +1,147 @@
+/* Styling */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Header */
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-bottom: 4px solid #fd0000;
+  }
+  
+  header h1 {
+    margin: 0;
+    font-size: 3rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  
+  /* Navigation*/
+  nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #fd0000;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  nav ul li {
+    margin: 0 15px;
+  }
+  
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 12px 18px;
+    display: block;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    background-color: #444;
+    border-radius: 5px;
+    transform: scale(1.1);
+  }
+  
+  /* Main */
+  main {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Video */
+  .video-container {
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* mainVideo */
+  video {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .box {
+    float: left; 
+    width: 45%;  
+    margin: 15px;  
+    padding: 20px; 
+    border: 2px solid #ddd; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    background-color: #fff; 
+  }
+  
+  
+  /* Image */
+  img {
+    max-width: 90%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  footer p {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+  
+  /* design response */
+  @media (max-width: 768px) {
+    header h1 {
+      font-size: 2.2rem;
+    }
+  
+    nav ul {
+      flex-direction: column;
+    }
+  
+    nav ul li {
+      margin: 10px 0;
+    }
+  
+    nav ul li a {
+      font-size: 1.1rem;
+      padding: 12px;
+    }
+  
+    main {
+      padding: 20px;
+    }
+  }
+  
