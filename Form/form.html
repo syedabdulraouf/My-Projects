@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="formstyles.css">
+    <title>Registration</title>
+
+    <script type="text/javascript">
+
+        function validateForm() {
+            let fname = document.forms["registrationForm"]["name"].value;
+            if (fname.length > 10) {
+                alert("Name is to long (Max 10 Characters)");
+                return false;
+            }
+
+            let email = document.forms["registrationForm"]["email"].value;
+            if (email == "") {
+                alert("Email must be filled out");
+                return false;
+            }
+
+            let age = document.getElementById("age").value;
+            if (age < 1) {
+                alert("Age must be greater than 0");
+                return false;
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <h2>Register </h2>
+    <form action="registration.php" name="registrationForm" method="post" onsubmit="return (validateForm())">
+        <fieldset>
+            <legend>Personal Information</legend>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br><br>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required><br><br>
+
+            <label for="gender">Gender:</label>
+            <input type="radio" id="male" name="gender" value="Male" required>
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="gender" value="Female" required>
+            <label for="female">Female</label>
+            <input type="radio" id="other" name="gender" value="Other" required>
+            <label for="other">Other</label><br><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Choose Course</legend>
+            <label for="course">Select Course:</label>
+            <select id="course" name="course" required>
+                <optgroup label="Math">
+                    <option value="Algebra">Algebra</option>
+                    <option value="Calculus">Calculus</option>
+                    <option value="Geometry">Geometry</option>
+                </optgroup>
+                <optgroup label="Science">
+                    <option value="Biology">Biology</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Physics">Physics</option>
+                </optgroup>
+                <optgroup label="Humanities">
+                    <option value="History">History</option>
+                    <option value="Literature">Literature</option>
+                    <option value="Philosophy">Philosophy</option>
+                </optgroup>
+            </select><br><br>
+
+            <label for="level">Level:</label><br>
+            <input type="checkbox" id="level1" name="levels[]" value="Level 1">
+            <label for="level1">Level 1</label><br>
+            <input type="checkbox" id="level2" name="levels[]" value="Level 2">
+            <label for="level2">Level 2</label><br>
+            <input type="checkbox" id="level3" name="levels[]" value="Level 3">
+            <label for="level3">Level 3</label><br><br>
+        </fieldset>
+
+        <input type="submit" value="Submit">
+    </form>
+
+
+
+</body>
+
+</html>
