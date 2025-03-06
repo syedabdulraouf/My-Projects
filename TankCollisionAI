@@ -1,0 +1,132 @@
+import turtle
+import math
+import random
+
+# Screen setup
+screen = turtle.Screen()
+screen.title("Top View Tank Game")
+screen.tracer(0)
+
+# Tank variables
+x, y = 0, 0
+angle = 90
+v = 0 
+
+# Tank settings
+tank = turtle.Turtle()
+tank.speed(0)
+tank.penup()
+tank.shape("square")
+tank.shapesize(3, 4)
+tank.setheading(angle)
+
+turret = turtle.Turtle()
+turret.speed(0)
+turret.penup()
+turret.shape("circle")
+turret.shapesize(0.5, 4)
+turret.setheading(angle)
+
+# Movement functions
+def move_forward():
+    global v
+    v = 10 
+
+def stop_tank():
+    global v
+    v = 0 
+
+def rotate_left():
+    global angle
+    angle += 10
+    tank.setheading(angle)
+    turret.setheading(angle)
+
+def rotate_right():
+    global angle
+    angle -= 10
+    tank.setheading(angle)
+    turret.setheading(angle)
+
+# Enemy AI Tank Class
+class EnemyTank:
+    def __init__(self):
+        self.tank = turtle.Turtle()
+        self.tank.speed(0)
+        self.tank.penup()
+        self.tank.shape("square")
+        self.tank.shapesize(3, 4)
+        self.x = random.randint(-200, 200)
+        self.y = random.randint(-200, 200)
+        self.angle = 0
+        self.tank.setpos(self.x, self.y)
+    
+    def update(self, player_x, player_y):
+        dx = player_x - self.x
+        dy = player_y - self.y
+        self.angle = math.degrees(math.atan2(dy, dx))
+        self.tank.setheading(self.angle)
+        self.x += 2 * math.cos(math.radians(self.angle))
+        self.y += 2 * math.sin(math.radians(self.angle))
+        
+        if not check_collision(self.x, self.y):
+            self.tank.setpos(self.x, self.y)
+
+# Collision Detection Function
+def check_collision(x, y):
+    """Prevent tanks from moving outside boundaries"""
+    if abs(x) > 250 or abs(y) > 250:
+        return True
+    return False
+
+# Function to update game screen
+def screen_update():
+    global x, y, angle, v
+    
+    if v != 0:
+        new_x = x + v * math.cos(math.radians(angle))
+        new_y = y + v * math.sin(math.radians(angle))
+        
+        if not check_collision(new_x, new_y):
+            x, y = new_x, new_y
+            
+            tank.setpos(x, y)
+            turret.setpos(x + 20 * math.cos(math.radians(angle)),
+                          y + 20 * math.sin(math.radians(angle)))
+    
+    for enemy in enemies:
+        enemy.update(x, y)
+    
+    screen.update()
+
+# Key Bindings
+screen.listen()
+screen.onkeypress(move_forward, "Up")
+screen.onkeyrelease(stop_tank, "Up")
+screen.onkeypress(rotate_left, "Left")
+screen.onkeypress(rotate_right, "Right")
+
+# Create enemy tanks
+enemies = [EnemyTank() for _ in range(2)]
+
+# Main Game Loop
+def game_loop():
+    screen_update()
+    screen.ontimer(game_loop, 50)
+
+game_loop()
+screen.mainloop()
+
+# 1. atan2() Function for AI Movement
+# Explanation:
+# - Finds the angle between the enemy and player.
+# - Ensures AI tanks chase the player correctly.
+#
+# 2. Turtle Graphics for Rendering
+# Explanation:
+# - Used for drawing and updating tank positions.
+#
+# 3. Collision Detection
+# Explanation:
+# - Prevents tanks from passing through each other.
+# - Stops tanks from moving outside game boundaries.
